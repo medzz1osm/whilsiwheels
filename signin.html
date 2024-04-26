@@ -14,7 +14,7 @@
     </form>
 
     <script>
-        document.getElementById('signInForm').addEventListener('submit', function(event) {
+     document.getElementById('signInForm').addEventListener('submit', async function(event) {
     event.preventDefault();
 
     var username = document.getElementById('username').value;
@@ -22,7 +22,17 @@
 
     // Add your validation logic here. If the validation passes, navigate to another page.
     if (username !== "" && password !== "") {
-        window.location.href = "home.html"; // Replace with your URL
+        // Hash the password
+        const encoder = new TextEncoder();
+        const data = encoder.encode(password);
+        const hash = await window.crypto.subtle.digest('SHA-256', data);
+        
+        // Convert the hash to hexadecimal
+        let hashArray = Array.from(new Uint8Array(hash));
+        let hashedPassword = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+        // Now you can send `username` and `hashedPassword` to your server
+        console.log(`Username: ${username}, Password: ${hashedPassword}`);
     } else {
         console.log('Invalid username or password');
     }
