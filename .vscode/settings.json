@@ -10,8 +10,22 @@
             "port": 3306,
             "driver": "MySQL",
             "name": "brukerSQLconnection",
-            "database": "users",
+            "database": "brukere",
             "username": "admin",
+            "password": "adminGul"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Brukertest",
+            "database": "Brukere",
+            "username": "root",
             "password": "adminGul"
         }
     ]
